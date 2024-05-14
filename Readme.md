@@ -8,7 +8,7 @@ tags:
   - TensorFlow
   - Keras
 ---
-###### Python Version => 3.10.12
+#### Python Version => 3.10.12
 Using Python versions other than the specified is likely fail.
 Using Library versions other than the specified in the requirements.txt is likely fail.
 
