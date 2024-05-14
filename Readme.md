@@ -63,4 +63,5 @@ pip install -r requirements.txt
 </pre>
 
 ![Alt text](https://github.com/AllanMogley/11-Malaria-Cells-Analysis/blob/master/04%20-%20Image_Results/output.png)
+<img src="https://github.com/AllanMogley/11-Malaria-Cells-Analysis/blob/master/04%20-%20Image_Results/output.png" width="391" height="490" />
 
