@@ -1,8 +1,8 @@
-matplotlib                   3.8.4
-matplotlib-inline            0.1.7
-numpy                        1.26.4
-pillow                       10.3.0
-tensorflow                   2.16.1
-tensorflow-datasets          4.9.4
-tensorflow-io-gcs-filesystem 0.37.0
-tensorflow-metadata          1.15.0
+matplotlib==3.8.4
+matplotlib-inline==0.1.7
+numpy==1.26.4
+pillow==10.3.0
+tensorflow==2.16.1
+tensorflow-datasets==4.9.4
+tensorflow-io-gcs-filesystem==0.37.0
+tensorflow-metadata==1.15.0
