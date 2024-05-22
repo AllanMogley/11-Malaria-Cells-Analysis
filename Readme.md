@@ -1,67 +1,90 @@
----
-tags:
-  - ComputerVision
-  - Malaria
-  - Uninfected
-  - Parasitized
-  - CEMA
-  - TensorFlow
-  - Keras
----
-#### Python Version => 3.10.12
+# Readme
+
+### Python Version : 3.10.12
+
 Using Python versions other than the specified is likely fail.
+
 Using Library versions other than the specified in the requirements.txt is likely fail.
 
+---
 
-1. Install Required Libraries
-   
+### Install Required Libraries
+
 ```
 pip install -r requirements.txt
 ```
 
+### Predict Classes
 
-2. Open and Run cells in the **model_predictor.ipynb** File
-   
-3. You can explore the **model_trainer.ipynb** to retrain the model yourself
-   
-   **NOTE:** It will be better to use a GPU or TPU or rather train from GOOGLE COLABS and while you do this, ensure you have the correct library version within COLABS.
+1. Open and Run cells in the ***model_predictor.ipynb*** File
+2. You can explore the ***model_trainer.ipynb*** to retrain the model yourself
+    
+    **NOTE:** It will be better to use a GPU or TPU or rather train from GOOGLE COLABS and while you do this, ensure you have the correct library version within COLABS.
+    
 
+---
 
-4. Model Architecture
-   
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
-┃<span style="font-weight: bold"> Layer (type)                    </span>┃<span style="font-weight: bold"> Output Shape           </span>┃<span style="font-weight: bold">       Param # </span>┃
+---
+
+## Docker
+
+```bash
+docker build -t malaria_image .
+```
+
+```bash
+docker run --rm -d -t --name=my_container --port=8080:8080 malaria_image
+```
+
+```bash
+docker exec -ti my_container bash
+```
+
+```bash
+jupyter notebook --ip='0.0.0.0' --port=8080 --no-browser --allow-root
+```
+
+---
+
+---
+
+### Model Architecture
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)┃ Output Shape┃       Param #┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
-│ conv2d (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">200</span>, <span style="color: #00af00; text-decoration-color: #00af00">200</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)   │           <span style="color: #00af00; text-decoration-color: #00af00">448</span> │
+│ conv2d (Conv2D)                 │ (None, 200, 200, 16)   │           448 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv2d_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">200</span>, <span style="color: #00af00; text-decoration-color: #00af00">200</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)   │         <span style="color: #00af00; text-decoration-color: #00af00">2,320</span> │
+│ conv2d_1 (Conv2D)               │ (None, 200, 200, 16)   │         2,320 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ max_pooling2d (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>)    │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">100</span>, <span style="color: #00af00; text-decoration-color: #00af00">100</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)   │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ max_pooling2d (MaxPooling2D)    │ (None, 100, 100, 16)   │             0 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ sequential (<span style="color: #0087ff; text-decoration-color: #0087ff">Sequential</span>)         │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">50</span>, <span style="color: #00af00; text-decoration-color: #00af00">50</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>)     │         <span style="color: #00af00; text-decoration-color: #00af00">2,160</span> │
+│ sequential (Sequential)         │ (None, 50, 50, 32)     │         2,160 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ sequential_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Sequential</span>)       │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">25</span>, <span style="color: #00af00; text-decoration-color: #00af00">25</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │         <span style="color: #00af00; text-decoration-color: #00af00">7,392</span> │
+│ sequential_1 (Sequential)       │ (None, 25, 25, 64)     │         7,392 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ sequential_2 (<span style="color: #0087ff; text-decoration-color: #0087ff">Sequential</span>)       │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │        <span style="color: #00af00; text-decoration-color: #00af00">27,072</span> │
+│ sequential_2 (Sequential)       │ (None, 12, 12, 128)    │        27,072 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dropout (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ dropout (Dropout)               │ (None, 12, 12, 128)    │             0 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ sequential_3 (<span style="color: #0087ff; text-decoration-color: #0087ff">Sequential</span>)       │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>, <span style="color: #00af00; text-decoration-color: #00af00">256</span>)      │       <span style="color: #00af00; text-decoration-color: #00af00">103,296</span> │
+│ sequential_3 (Sequential)       │ (None, 6, 6, 256)      │       103,296 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dropout_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>, <span style="color: #00af00; text-decoration-color: #00af00">256</span>)      │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ dropout_1 (Dropout)             │ (None, 6, 6, 256)      │             0 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ flatten (<span style="color: #0087ff; text-decoration-color: #0087ff">Flatten</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">9216</span>)           │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ flatten (Flatten)               │ (None, 9216)           │             0 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ sequential_4 (<span style="color: #0087ff; text-decoration-color: #0087ff">Sequential</span>)       │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">512</span>)            │     <span style="color: #00af00; text-decoration-color: #00af00">4,721,152</span> │
+│ sequential_4 (Sequential)       │ (None, 512)            │     4,721,152 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ sequential_5 (<span style="color: #0087ff; text-decoration-color: #0087ff">Sequential</span>)       │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │        <span style="color: #00af00; text-decoration-color: #00af00">66,176</span> │
+│ sequential_5 (Sequential)       │ (None, 128)            │        66,176 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ sequential_6 (<span style="color: #0087ff; text-decoration-color: #0087ff">Sequential</span>)       │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)             │         <span style="color: #00af00; text-decoration-color: #00af00">8,512</span> │
+│ sequential_6 (Sequential)       │ (None, 64)             │         8,512 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense_3 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">1</span>)              │            <span style="color: #00af00; text-decoration-color: #00af00">65</span> │
+│ dense_3 (Dense)                 │ (None, 1)              │            65 │
 └─────────────────────────────────┴────────────────────────┴───────────────┘
-</pre>
 
+```
 
-<img src="https://github.com/AllanMogley/11-Malaria-Cells-Analysis/blob/master/04%20-%20Image_Results/output.png" width="591" height="690" />
+### Sample Results
 
+![https://github.com/AllanMogley/11-Malaria-Cells-Analysis/blob/master/04%20-%20Image_Results/output.png](https://github.com/AllanMogley/11-Malaria-Cells-Analysis/blob/master/04%20-%20Image_Results/output.png)
